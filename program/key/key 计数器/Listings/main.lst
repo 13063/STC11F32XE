@@ -1,0 +1,52 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              03/31/2023 17:57:53 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: E:\EE\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\m
+                    -ain.lst) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <STC12C5A60S2.H>
+   2          #include "digital.h"
+   3          
+   4          sbit S1=P3^4;
+   5          int cnt;
+   6          
+   7          void main()
+   8          {       
+   9   1              TMOD &= 0xF0;
+  10   1              TMOD |= 0x04;
+  11   1              TL0=30;
+  12   1              TH0=255;
+  13   1              TF0=0;
+  14   1              TR0=1;
+  15   1              ET0=1;
+  16   1              EA=1;
+  17   1              while(1)
+  18   1              {
+  19   2                      displayNum(cnt,10);
+  20   2              }       
+  21   1      }
+  22          
+  23          void Timer0_Isr(void) interrupt 1
+  24          {
+  25   1              TL0=30;
+  26   1              TH0=255;
+  27   1              cnt++;
+  28   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     57    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\byt" 
+PRINT(".\Listings\byt.m51") RAMSIZE(256) 

@@ -1,0 +1,63 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              04/02/2023 23:38:04 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: E:\EE\Keil_v5\C51\BIN\C51.EXE main.c LARGE OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\List
+                    -ings\main.lst) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <STC12C5A60S2.H>
+   2          #include "public.h"
+   3          #include "uart.h"
+   4          
+   5          
+   6          #define BUFFER_LEN 200
+   7          
+   8          sbit led1=P1^0;
+   9          
+  10          uchar rx_buffer[BUFFER_LEN];
+  11          uchar tx_buffer[BUFFER_LEN];
+  12          
+  13          
+  14          void main()
+  15          {
+  16   1              uchar i;
+  17   1              UartInit();
+  18   1              EA=1;
+  19   1              ES=1;
+  20   1              for(i=0;i<BUFFER_LEN-1;i++)
+  21   1                      rx_buffer[i]='P';
+  22   1              rx_buffer[BUFFER_LEN-1]='\0';
+  23   1              while(1)
+  24   1              {
+  25   2      //              UART_SendString(rx_buffer);
+  26   2      //              UART_SendString("\r\n");
+  27   2                      printf(rx_buffer);
+  28   2                      delay(200);
+  29   2              }
+  30   1      }
+  31          
+  32          void Uart_Isr() interrupt 4 
+  33          {
+  34   1              if (RI==1)
+  35   1              {
+  36   2                      led1=~led1;
+  37   2                      RI=0;
+  38   2              }
+  39   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     66    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =    400    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

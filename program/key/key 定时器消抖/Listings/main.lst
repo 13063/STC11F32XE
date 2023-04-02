@@ -1,0 +1,73 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              03/31/2023 19:52:35 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: E:\EE\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\m
+                    -ain.lst) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <STC12C5A60S2.H>
+   2          #include "digital.h"
+   3          
+   4          sbit S1=P3^4;
+   5          int count,cnt;
+   6          
+   7          void Timer0_Init(void)          //20微秒@11.0592MHz
+   8          {
+   9   1              AUXR |= 0x80;                   //定时器时钟1T模式
+  10   1              TMOD &= 0xF0;                   //设置定时器模式
+  11   1              TL0 = 0x18;                             //设置定时初始值
+  12   1              TH0 = 0xF9;                             //设置定时初始值
+  13   1              TF0 = 0;                                //清除TF0标志
+  14   1              ET0 = 1;                                //使能定时器0中断
+  15   1      }
+  16          
+  17          void main()
+  18          {
+  19   1              Timer0_Init();
+  20   1              EA=1;
+  21   1              while(1)
+  22   1              {
+  23   2                      if(S1==0)
+  24   2                      {
+  25   3                              TR0 = 1;                                //定时器0开始计时
+  26   3                      }
+  27   2                      displayNum(cnt,10);
+  28   2              }
+  29   1              
+  30   1      }
+  31          
+  32          void Timer0_Isr(void) interrupt 1
+  33          {
+  34   1              TL0 = 0x18;                             //设置定时初始值
+  35   1              TH0 = 0xF9;                             //设置定时初始值
+  36   1              TR0=0;
+  37   1              if(count%1000==0)
+  38   1              {
+  39   2                      if(S1==0)
+  40   2                      {
+  41   3                              cnt++;
+  42   3                              count=0;
+  43   3                              while(!S1)
+  44   3                                      displayNum(cnt,10);
+  45   3                      }
+  46   2              }               
+  47   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    162    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+C51 COMPILER V9.60.0.0   MAIN                                                              03/31/2023 19:52:35 PAGE 2   
+
+   DATA SIZE        =      4    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

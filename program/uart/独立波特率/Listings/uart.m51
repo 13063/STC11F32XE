@@ -1,0 +1,235 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    04/02/2023  01:44:54  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+E:\EE\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj, .\Objects\public.obj, .\Objects\uart.obj TO .\Objects\uart PRINT (.\L
+>> istings\uart.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: LARGE
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  .\Objects\public.obj (PUBLIC)
+  .\Objects\uart.obj (UART)
+  E:\EE\KEIL_V5\C51\LIB\C51L.LIB (?C_STARTUP)
+  E:\EE\KEIL_V5\C51\LIB\C51L.LIB (?C?CLDPTR)
+  E:\EE\KEIL_V5\C51\LIB\C51L.LIB (?C?ILDIX)
+
+
+LINK MAP OF MODULE:  .\Objects\uart (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            IDATA   0008H     0001H     UNIT         ?STACK
+
+            * * * * * * *  X D A T A   M E M O R Y  * * * * * * *
+            XDATA   0000H     00C8H     UNIT         ?XD?MAIN
+            XDATA   00C8H     0004H     UNIT         _XDATA_GROUP_
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0019H     UNIT         ?PR?MAIN?MAIN
+                    001CH     0007H                  *** GAP ***
+            CODE    0023H     0003H     ABSOLUTE     
+            CODE    0026H     0033H     UNIT         ?PR?_UART_SENDSTRING?UART
+            CODE    0059H     002FH     UNIT         ?C?LIB_CODE
+            CODE    0088H     002CH     UNIT         ?PR?_DELAY?PUBLIC
+            CODE    00B4H     0013H     UNIT         ?PR?UARTINIT?UART
+            CODE    00C7H     000EH     UNIT         ?CO?MAIN
+            CODE    00D5H     000CH     UNIT         ?C_C51STARTUP
+            CODE    00E1H     0008H     UNIT         ?PR?UART_ISR?MAIN
+            CODE    00E9H     0008H     UNIT         ?PR?_UART_SENDBYTE?UART
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\uart (MAIN)
+
+
+SEGMENT                             XDATA_GROUP
+  +--> CALLED SEGMENT             START    LENGTH
+-------------------------------------------------
+?C_C51STARTUP                     -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                     -----    -----
+  +--> ?PR?UARTINIT?UART
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  04/02/2023  01:44:54  PAGE 2
+
+
+  +--> ?CO?MAIN
+  +--> ?PR?_UART_SENDSTRING?UART
+  +--> ?PR?_DELAY?PUBLIC
+
+?PR?_UART_SENDSTRING?UART         00C8H    0003H
+  +--> ?PR?_UART_SENDBYTE?UART
+
+?PR?_DELAY?PUBLIC                 00C8H    0004H
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\uart (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:00C0H         PUBLIC        P4
+  D:00C8H         PUBLIC        P5
+  B:00A8H.7       PUBLIC        EA
+  D:00A8H         PUBLIC        IE
+  B:00A8H.4       PUBLIC        ES
+  D:00B8H         PUBLIC        IP
+  B:0098H.0       PUBLIC        RI
+  D:00D8H         PUBLIC        CCON
+  C:0003H         PUBLIC        main
+  C:00E1H         PUBLIC        Uart_Isr
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  X:0000H         PUBLIC        rx_buffer
+  X:0064H         PUBLIC        tx_buffer
+  B:0090H.0       PUBLIC        led1
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          MAIN
+  C:0003H         LINE#         12
+  C:0003H         LINE#         13
+  C:0003H         LINE#         14
+  C:0006H         LINE#         15
+  C:0008H         LINE#         16
+  C:000AH         LINE#         17
+  C:000AH         LINE#         18
+  C:000AH         LINE#         19
+  C:0013H         LINE#         20
+  C:001AH         LINE#         21
+  -------         ENDPROC       MAIN
+  -------         PROC          UART_ISR
+  C:00E1H         LINE#         24
+  C:00E1H         LINE#         26
+  C:00E4H         LINE#         27
+  C:00E4H         LINE#         28
+  C:00E6H         LINE#         29
+  C:00E8H         LINE#         30
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  04/02/2023  01:44:54  PAGE 3
+
+
+  C:00E8H         LINE#         31
+  -------         ENDPROC       UART_ISR
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        PUBLIC
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:00C0H         PUBLIC        P4
+  D:00C8H         PUBLIC        P5
+  D:00A8H         PUBLIC        IE
+  C:0088H         PUBLIC        _delay
+  D:00B8H         PUBLIC        IP
+  D:00D8H         PUBLIC        CCON
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        c
+  -------         DO            
+  X:00C8H         SYMBOL        a
+  X:00C9H         SYMBOL        b
+  -------         DO            
+  X:00CAH         SYMBOL        i
+  X:00CBH         SYMBOL        j
+  -------         ENDDO         
+  -------         ENDDO         
+  C:0088H         LINE#         3
+  C:0088H         LINE#         4
+  C:0088H         LINE#         6
+  C:0091H         LINE#         7
+  C:0091H         LINE#         10
+  C:0092H         LINE#         11
+  C:0098H         LINE#         12
+  C:009CH         LINE#         14
+  C:009CH         LINE#         15
+  C:00A4H         LINE#         16
+  C:00ACH         LINE#         17
+  C:00B3H         LINE#         18
+  -------         ENDPROC       _DELAY
+  -------         ENDMOD        PUBLIC
+
+  -------         MODULE        UART
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:00C0H         PUBLIC        P4
+  D:00C8H         PUBLIC        P5
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  B:0098H.1       PUBLIC        TI
+  D:00D8H         PUBLIC        CCON
+  C:0026H         PUBLIC        _UART_SendString
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  04/02/2023  01:44:54  PAGE 4
+
+
+  D:0099H         PUBLIC        SBUF
+  D:0087H         PUBLIC        PCON
+  D:0098H         PUBLIC        SCON
+  C:00B4H         PUBLIC        UartInit
+  D:0088H         PUBLIC        TCON
+  C:00E9H         PUBLIC        _UART_SendByte
+  D:008EH         PUBLIC        AUXR
+  D:009CH         PUBLIC        BRT
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _UART_SENDBYTE
+  D:0007H         SYMBOL        byte
+  C:00E9H         LINE#         3
+  C:00E9H         LINE#         4
+  C:00E9H         LINE#         5
+  C:00EBH         LINE#         6
+  C:00EEH         LINE#         7
+  C:00F0H         LINE#         8
+  -------         ENDPROC       _UART_SENDBYTE
+  -------         PROC          _UART_SENDSTRING
+  X:00C8H         SYMBOL        str
+  C:0026H         LINE#         10
+  C:0031H         LINE#         11
+  C:0031H         LINE#         12
+  C:0041H         LINE#         13
+  C:0041H         LINE#         14
+  C:0056H         LINE#         15
+  C:0058H         LINE#         16
+  -------         ENDPROC       _UART_SENDSTRING
+  -------         PROC          UARTINIT
+  C:00B4H         LINE#         17
+  C:00B4H         LINE#         18
+  C:00B4H         LINE#         19
+  C:00B7H         LINE#         20
+  C:00BAH         LINE#         21
+  C:00BDH         LINE#         22
+  C:00C0H         LINE#         23
+  C:00C3H         LINE#         24
+  C:00C6H         LINE#         25
+  -------         ENDPROC       UARTINIT
+  -------         ENDMOD        UART
+
+  -------         MODULE        ?C?CLDPTR
+  C:0059H         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+  -------         MODULE        ?C?ILDIX
+  C:0072H         PUBLIC        ?C?ILDIX
+  -------         ENDMOD        ?C?ILDIX
+
+Program Size: data=9.0 xdata=204 code=234
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
